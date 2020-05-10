@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Node 基于 phantom 生成网页快照 | APeng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这里用的是 phantom 代码地址">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node 基于 phantom 生成网页快照">
+<meta property="og:url" content="https://gdrpapeng.github.io/2019/05/20/html2image/index.html">
+<meta property="og:site_name" content="APeng">
+<meta property="og:description" content="这里用的是 phantom 代码地址">
+<meta property="og:locale" content="zh-CH">
+<meta property="og:image" content="http://144.34.199.163/images/windows-image.jpg">
+<meta property="og:image" content="http://144.34.199.163/images/linux-no-image.png">
+<meta property="og:updated_time" content="2020-02-19T01:43:15.137Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node 基于 phantom 生成网页快照">
+<meta name="twitter:description" content="这里用的是 phantom 代码地址">
+<meta name="twitter:image" content="http://144.34.199.163/images/windows-image.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="APeng" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">APeng</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://gdrpapeng.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-html2image" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/20/html2image/" class="article-date">
+  <time datetime="2019-05-20T09:14:28.000Z" itemprop="datePublished">2019-05-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Node 基于 phantom 生成网页快照
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这里用的是 phantom</p>
+<p><a href="https://github.com/gdrpAPeng/koa2-template/blob/master/routes/tools.js" target="_blank" rel="noopener">代码地址</a></p>
+<a id="more"></a>
+<p> <a href="https://www.jianshu.com/p/573dc94fb3ca" target="_blank" rel="noopener">https://www.jianshu.com/p/573dc94fb3ca</a> 安装 phantomjs</p>
+<h3 id="1、安装依赖"><a href="#1、安装依赖" class="headerlink" title="1、安装依赖"></a>1、安装依赖</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install phantom</span><br><span class="line"><span class="comment">// 可能会找不到 phantomjs -- 安装一下就好了，跟着报错走</span></span><br><span class="line">npm install phantomjs</span><br></pre></td></tr></table></figure>
+<h3 id="2、引入-phantom"><a href="#2、引入-phantom" class="headerlink" title="2、引入 phantom"></a>2、引入 phantom</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const phantom = require(&quot;phantom&quot;);</span><br></pre></td></tr></table></figure>
+<h3 id="3、效果"><a href="#3、效果" class="headerlink" title="3、效果"></a>3、效果</h3><p> 这里遇到个问题，在 windows 上运行没啥问题，放到 linux 就出现乱码，发现是缺少字体的问题<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 根据系统选择以下命令</span></span><br><span class="line"><span class="comment">// centos</span></span><br><span class="line">yum install bitmap-fonts bitmap-fonts-cjk </span><br><span class="line"><span class="comment">// ubuntu</span></span><br><span class="line">apt-get install xfonts-wqy</span><br></pre></td></tr></table></figure></p>
+<p>可能会因为字体问题导致效果不一致</p>
+<h4 id="windows-下效果"><a href="#windows-下效果" class="headerlink" title="windows 下效果"></a>windows 下效果</h4><p><img src="http://144.34.199.163/images/windows-image.jpg" alt="windows-image"><br><!-- #### linux 下效果
+![linux-image](http://144.34.199.163:3000/images/linux-image.png) --></p>
+<h4 id="linux-下乱码效果"><a href="#linux-下乱码效果" class="headerlink" title="linux 下乱码效果"></a>linux 下乱码效果</h4><p><img src="http://144.34.199.163/images/linux-no-image.png" alt="linux-no-image"></p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> phantom = <span class="built_in">require</span>(<span class="string">"phantom"</span>);</span><br><span class="line"></span><br><span class="line">router.post(<span class="string">"/html2Image"</span>, <span class="keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">   <span class="comment">// 初始化配置</span></span><br><span class="line">   <span class="keyword">const</span> initConfig = &#123;</span><br><span class="line">    width: <span class="number">1024</span>,</span><br><span class="line">    height: <span class="number">800</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> &#123; url, viewPort = &#123;&#125;, width, height &#125; = <span class="built_in">JSON</span>.parse(ctx.request.body);</span><br><span class="line">  <span class="comment">// 调用 phantom</span></span><br><span class="line">  <span class="keyword">const</span> instance = <span class="keyword">await</span> phantom.create();</span><br><span class="line">  <span class="keyword">const</span> page = <span class="keyword">await</span> instance.createPage();</span><br><span class="line">  <span class="comment">// 配置视图</span></span><br><span class="line">  page.property(<span class="string">"viewportSize"</span>, &#123;</span><br><span class="line">    width: viewPort.width || initConfig.width,</span><br><span class="line">    height: viewPort.height || initConfig.height</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// 配置截取区域</span></span><br><span class="line">  <span class="comment">// 默认截取整个页面</span></span><br><span class="line">  <span class="comment">// page.property('clipRect', &#123;</span></span><br><span class="line">  <span class="comment">//     top: 0,</span></span><br><span class="line">  <span class="comment">//     left: 0,</span></span><br><span class="line">  <span class="comment">//     width: width || 1024,</span></span><br><span class="line">  <span class="comment">//     height: height || 800</span></span><br><span class="line">  <span class="comment">// &#125;)</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">const</span> status = <span class="keyword">await</span> page.open(url);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> timestamp = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">  <span class="comment">// 生成图片</span></span><br><span class="line">  <span class="keyword">await</span> page.render(<span class="string">`./public/screenshot/<span class="subst">$&#123;timestamp&#125;</span>.png`</span>);</span><br><span class="line">  <span class="keyword">await</span> instance.exit();</span><br><span class="line"></span><br><span class="line">  ctx.response.type = <span class="string">"json"</span>;</span><br><span class="line">  ctx.body = &#123;</span><br><span class="line">    status: status,</span><br><span class="line">    width: width || initConfig.width,</span><br><span class="line">    height: height || initConfig.height,</span><br><span class="line">    viewPortWidth: viewPort.width || initConfig.width,</span><br><span class="line">    viewPortHeight: viewPort.height || initConfig.height,</span><br><span class="line">    url: <span class="string">"http://"</span> + ctx.request.host + <span class="string">"/screenshot/"</span> + timestamp + <span class="string">".png"</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://gdrpapeng.github.io/2019/05/20/html2image/" data-id="cka1elsyf0001usdw9qeareec" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/24/hexo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          hexo命令
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/05/11/js-notes/">js-notes</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/17/js-question-bank/">js 题库</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/09/notes/">笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/05/webhook/">webhook 实现项目自动部署</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/28/front-end/">前端面试题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 APeng<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
